@@ -69,6 +69,23 @@ export default function Register() {
                 </div>
 
                 <div className="mt-4">
+                    <Label forInput="favorite_food" value="Favorite Food" />
+
+                    <Input
+                        type="text"
+                        name="favorite_food"
+                        value={data.favorite_food}
+                        className="mt-1 block w-full"
+                        autoComplete="favorite_food"
+                        isFocused={true}
+                        handleChange={onHandleChange}
+                        required
+                    />
+
+                    <InputError message={errors.favorite_food} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
                     <Label forInput="password" value="Password" />
 
                     <Input
