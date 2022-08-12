@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'favorite_food',
+        'role_id'
     ];
 
     /**
@@ -40,5 +42,22 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'role_id' => Role::class
     ];
+
+    public function products() 
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+}
+
+enum Role: int 
+{
+    case Admin = 0;
+    case Customer = 1;
 }
