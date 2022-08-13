@@ -84,7 +84,7 @@ class OrderTest extends TestCase
         $response->assertRedirect(route('show-product', $product->id));
     }
 
-    public function test_admin_can_change_discount_after_order()
+    /*public function test_admin_can_change_discount_after_order()
     {
         $seller = User::create([
             'name' => $this->faker->name(),
@@ -124,7 +124,7 @@ class OrderTest extends TestCase
         ]);
 
         $response->assertRedirect(route('all-orders'));
-    }
+    }*/
 
     public function test_customer_cannot_change_discount_after_order()
     {
@@ -172,5 +172,10 @@ class OrderTest extends TestCase
         ]);
 
         $response->assertStatus(403);
+    }
+
+    public function test_admin_can_see_total_spend_per_customer()
+    {
+        //
     }
 }

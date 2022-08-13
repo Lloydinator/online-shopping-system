@@ -1,3 +1,21 @@
-1. 
+1. The state of the MVP currently is not in a usable state. This is because there is 
+currently no frontend. However, most of the backend is done. To get the frontend to 
+work, about 8 hours is needed to create the UI to create customers and enable them 
+to create products and orders. 
 
-If admin changes discount, how is their card charged or refunded the difference?
+2. Even though users and products change, all orders are saved to the database and 
+can be accessed with admin permissions. Discounts, products, and buyers (users) are 
+all stored in the Orders table.
+
+3. A shopping cart is great for keeping track of multiple items being bought. As 
+As the MVP is only allowing fo one item to be bought at a time, the shopping cart 
+should be left fror phase 2 or a later phase.
+
+4. Phase 2 was partially done. Even though tests pass, the features are basic. For these
+features to be fleshed out, about 24 hours is needed for both frontend and backend. 
+Turnaround date should be 6-7 business days from now.
+
+5. I would recommend using Stripe. Stripe is a platform that allows developers to build 
+e-commerce solutions faster and allows all users to track revenue and do things that 
+is expected of an e-commerce platform. It's trusted by most developers around the 
+world and is highly recommended.

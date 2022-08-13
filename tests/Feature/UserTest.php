@@ -155,9 +155,4 @@ class UserTest extends TestCase
 
         $response->assertStatus(403);
     }
-
-    public function test_admin_can_see_total_spend_per_customer()
-    {
-        //
-    }
 }
