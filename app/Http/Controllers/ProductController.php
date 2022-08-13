@@ -53,23 +53,6 @@ class ProductController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $this->authorize('show', Product::class);
-
-        $product = Product::find($id);
-
-        return Inertia::render('show-product', [
-            'product' => $product
-        ]);
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

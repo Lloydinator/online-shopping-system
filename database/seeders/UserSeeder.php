@@ -17,14 +17,6 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-                'name' => 'The Admin',
-                'email' => 'admin@admin.com',
-                'password' => Hash::make('password1'),
-                'favorite_food' => 'Chop suey',
-                'role_id' => 0,
-                'created_at' => now()->toDateTimeString()
-            ],
-            [
                 'name' => fake()->name(),
                 'email' => fake()->unique()->safeEmail(),
                 'password' => Hash::make('password2'),

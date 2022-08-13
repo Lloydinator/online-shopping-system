@@ -12,30 +12,6 @@ class ProductTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
-    public function test_admin_can_view_all_products()
-    {
-        $admin = User::factory()->admin()->make();
-
-        $response = $this->actingAs($admin)->get(route('all-products'));
-
-        $response->assertStatus(200);
-    }
-
-    public function test_customer_cannot_view_all_products()
-    {
-        $customer = User::create([
-            'name' => $this->faker->name(),
-            'email' => $this->faker->email(),
-            'favorite_food' => 'chicken',
-            'role_id' => 1,
-            'password' => 'passWord_1234',
-        ]);
-
-        $response = $this->actingAs($customer)->get(route('all-products'));
-
-        $response->assertStatus(403);
-    }
-
     public function test_anyone_can_create_products()
     {
         $producer = User::create([

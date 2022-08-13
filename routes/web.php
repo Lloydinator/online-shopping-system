@@ -27,14 +27,6 @@ Route::get('/', function () {
     ]);
 });
 
-// Users
-Route::group([], function () {
-    Route::get('home', [CustomerController::class, 'index'])->name('all-users');
-    Route::post('create-user', [CustomerController::class, 'store'])->name('create-user');
-    Route::post('edit-user/{id}', [CustomerController::class, 'update'])->name('edit-user');
-    Route::post('delete-user/{id}', [CustomerController::class, 'destroy'])->name('delete-user');
-});
-
 // Products
 Route::group(['prefix' => 'products'], function () {
     Route::get('all', [ProductController::class, 'index'])->name('all-products');
@@ -46,11 +38,8 @@ Route::group(['prefix' => 'products'], function () {
 
 // Orders
 Route::group(['prefix' => 'orders'], function () {
-    Route::get('all', [OrderController::class, 'index'])->name('all-orders');
     Route::get('show/{id}', [ProductController::class, 'show'])->name('show-order');
     Route::post('create', [OrderController::class, 'store'])->name('create-order');
-    Route::post('edit/{id}', [OrderController::class, 'update'])->name('edit-order');
-    Route::post('delete/{id}', [OrderController::class, 'destroy'])->name('delete-order');
 });
 
 Route::get('/dashboard', function () {
