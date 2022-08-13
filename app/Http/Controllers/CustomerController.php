@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class OrderController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class OrderController extends Controller
     {
         $this->authorize('viewAny', User::class);
         
-        $users = Order::where('role_id', 1)->get();
+        $users = User::where('role_id', 1)->get();
 
-        return Inertia::render('all-orders', [
+        return Inertia::render('all-users', [
             'users' => $users
         ]);
     }
@@ -42,14 +42,17 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        Order::create([
-            'user_id' => $request->user_id,
-            'product_id' => $request->product_id,
-            'notes' => $request->notes,
-            'amount_paid' => $request->amount_paid
+        $this->authorize('create', User::class);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'favorite_food' => $request->favorite_food,
+            'role_id' => 1,
+            'password' => $request->password,
         ]);
 
-        return redirect(route('all-orders'));
+        return redirect(route('all-users'));
     }
 
     /**
@@ -83,15 +86,15 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->authorize('update', Order::class);
+        $user = User::find($id);
 
-        $order = Order::find($id);
+        $this->authorize('update', $user);
 
-        $order->update([
-            'amount_paid' => $request->amount_paid
+        $user->update([
+            'name' => $request->name
         ]);
 
-        return redirect(route('all-orders'));
+        return redirect(route('all-users'));
     }
 
     /**
@@ -102,12 +105,12 @@ class OrderController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize('delete', Order::class);
+        $user = User::find($id);
 
-        $order = Order::find($id);
+        $this->authorize('delete', $user);
 
-        $order->delete();
+        $user->delete();
 
-        return redirect(route('all-orders'));
+        return redirect(route('all-users'));
     }
 }

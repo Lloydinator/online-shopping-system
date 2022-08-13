@@ -41,8 +41,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'role_id' => Role::class
+        'email_verified_at' => 'datetime'
     ];
 
     public function products() 
@@ -54,10 +53,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
-}
 
-enum Role: int 
-{
-    case Admin = 0;
-    case Customer = 1;
+    public function is_admin()
+    {
+        return $this->role_id === 0;
+    }
 }
