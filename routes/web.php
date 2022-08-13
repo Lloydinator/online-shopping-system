@@ -36,21 +36,21 @@ Route::group([], function () {
 });
 
 // Products
-Route::group([], function () {
-    Route::get('all-products', [ProductController::class, 'index'])->name('all-products');
-    Route::get('show-product/{id}', [ProductController::class, 'show'])->name('show-product');
-    Route::post('create-product', [ProductController::class, 'store'])->name('create-product');
-    Route::post('edit-product/{id}', [ProductController::class, 'update'])->name('edit-product');
-    Route::post('delete-product/{id}', [ProductController::class, 'destroy'])->name('delete-product');
+Route::group(['prefix' => 'products'], function () {
+    Route::get('all', [ProductController::class, 'index'])->name('all-products');
+    Route::get('show/{id}', [ProductController::class, 'show'])->name('show-product');
+    Route::post('create', [ProductController::class, 'store'])->name('create-product');
+    Route::post('edit/{id}', [ProductController::class, 'update'])->name('edit-product');
+    Route::post('delete/{id}', [ProductController::class, 'destroy'])->name('delete-product');
 });
 
 // Orders
-Route::group([], function () {
-    Route::get('all-products', [OrderController::class, 'index'])->name('all-orders');
-    Route::get('show-order/{id}', [ProductController::class, 'show'])->name('show-order');
-    Route::post('create-order', [OrderController::class, 'store'])->name('create-order');
-    Route::post('edit-order/{id}', [OrderController::class, 'update'])->name('edit-order');
-    Route::post('delete-order/{id}', [OrderController::class, 'destroy'])->name('delete-order');
+Route::group(['prefix' => 'orders'], function () {
+    Route::get('all', [OrderController::class, 'index'])->name('all-orders');
+    Route::get('show/{id}', [ProductController::class, 'show'])->name('show-order');
+    Route::post('create', [OrderController::class, 'store'])->name('create-order');
+    Route::post('edit/{id}', [OrderController::class, 'update'])->name('edit-order');
+    Route::post('delete/{id}', [OrderController::class, 'destroy'])->name('delete-order');
 });
 
 Route::get('/dashboard', function () {

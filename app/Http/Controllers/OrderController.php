@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 
 class OrderController extends Controller
@@ -49,7 +51,7 @@ class OrderController extends Controller
             'amount_paid' => $request->amount_paid
         ]);
 
-        return redirect(route('all-orders'));
+        return redirect(route('show-product', $request->product_id));
     }
 
     /**
@@ -83,11 +85,12 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->authorize('update', Order::class);
-
         $order = Order::find($id);
 
+        $this->authorize('update', $order->id);
+
         $order->update([
+            'discount' => $request->discount,
             'amount_paid' => $request->amount_paid
         ]);
 

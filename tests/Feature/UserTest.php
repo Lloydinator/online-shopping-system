@@ -28,7 +28,11 @@ class UserTest extends TestCase
 
     public function test_admin_can_view_all_users()
     {
-        //
+        $admin = User::factory()->admin()->make();
+
+        $response = $this->actingAs($admin)->get(route('all-users'));
+
+        $response->assertStatus(200);
     }
 
     public function test_admin_can_create_users()

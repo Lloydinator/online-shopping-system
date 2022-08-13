@@ -15,11 +15,11 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', User::class);
+        $this->authorize('viewAny', Product::class);
         
         $products = Product::all();
 
-        return Inertia::render('all-orders', [
+        return Inertia::render('all-products', [
             'products' => $products
         ]);
     }
@@ -42,16 +42,14 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('store', Product::class);
-
         Product::create([
             'user_id' => $request->user_id,
-            'product_id' => $request->product_id,
-            'notes' => $request->notes,
-            'amount_paid' => $request->amount_paid
+            'description' => $request->description,
+            'price' => $request->price,
+            'discounted_price' => $request->discounted_price
         ]);
 
-        return redirect(route('all-orders'));
+        return redirect(route('all-products'));
     }
 
     /**
@@ -108,8 +106,6 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $this->authorize('delete', Product::class);
-
         $product = Product::find($id);
 
         $product->delete();

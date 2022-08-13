@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
+            $table->decimal('discount')->nullable();
             $table->decimal('amount_paid')->nullable(false);
         });
     }
@@ -26,7 +27,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('amount_paid');
+            $table->dropColumn(['discount', 'amount_paid']);
         });
     }
 };
