@@ -1,6 +1,6 @@
 # Simple Online Shopping System
 
-This app is a simple online shopping system that allows 
+This app is a simple online shopping system that allows users to sell one item at a time. Buyers can also set their own discounts on the items that they buy.
 
 ## Installation
 
