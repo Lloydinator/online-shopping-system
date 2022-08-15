@@ -6,9 +6,9 @@ This app is a simple online shopping system that allows users to sell one item a
 
 - On your computer, clone this code to your device by running `git clone git@github.com:Lloydinator/` in your terminal.
 - In your terminal, navigate to the project folder and install all dependencies by running `composer install`. 
-- To get the project up and running, in one terminal window, run `php artisan serve` (Laravel's server). In another, run `npm install && npm run dev` (Vite and frontend).
 - Create a **.env** file by running `cp .env.example .env`. 
 - In your terminal, create a key by running `php artisan key:generate`.
+- To get the project up and running, in one terminal window, run `php artisan serve` (Laravel's server). In another, run `npm install && npm run dev` (Vite and frontend).
 
 ## Data
 - Create a MySQL database. 
